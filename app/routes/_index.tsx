@@ -1,6 +1,6 @@
 import { json } from '@remix-run/node';
-import { useLoaderData, Link as RemixLink } from '@remix-run/react';
-import { Image, Heading, Flex, Link as ChakraLink } from '@chakra-ui/react';
+import { useLoaderData } from '@remix-run/react';
+import { Image, Heading, Link as ChakraLink, Grid } from '@chakra-ui/react';
 import type { Assets } from '../interface/assets';
 
 export async function loader() {
@@ -14,16 +14,21 @@ export default function Index() {
   const { assets } = useLoaderData<typeof loader>();
 
   return (
-    <Flex flexWrap='wrap'>
+    <Grid
+      templateColumns={{
+        base: 'repeat(1, 1fr)',
+        md: 'repeat(2, 1fr)',
+      }}
+      padding='1rem'
+      gap='0.5rem'
+      justifyItems='center'
+    >
       {assets.map((asset) => (
-        <ChakraLink key={asset.id} width='50%' as={RemixLink} to={`/${asset.asset_contract.address}/${asset.token_id}`}>
-          <Image
-            src={asset.image_url}
-            alt={asset.description}
-          />
-          <Heading>{asset.name}</Heading>
+        <ChakraLink key={asset.id} href={`/${asset.asset_contract.address}/${asset.token_id}`}>
+          <Image src={asset.image_url} alt={asset.description} margin='0 auto 0.25rem' />
+          <Heading textAlign='center'>{asset.name}</Heading>
         </ChakraLink>
       ))}
-    </Flex>
+    </Grid>
   );
 }

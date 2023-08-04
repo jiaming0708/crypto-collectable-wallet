@@ -1,4 +1,16 @@
-import { Button, Card, CardBody, CardHeader, Flex, Heading, Link, Image, Text, CardFooter, IconButton } from '@chakra-ui/react';
+import {
+  Button,
+  Card,
+  CardBody,
+  CardHeader,
+  Flex,
+  Heading,
+  Link,
+  Image,
+  Text,
+  CardFooter,
+  IconButton,
+} from '@chakra-ui/react';
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import type { LoaderArgs } from '@remix-run/node';
 import { json } from '@remix-run/node';
@@ -16,20 +28,28 @@ export default function Detail() {
   const data = useLoaderData<typeof loader>();
 
   return (
-    <Card>
+    <Card height='100vh' position='relative'>
       <CardHeader width='100%'>
         <Flex justifyContent='space-between'>
-          <IconButton variant='ghost' icon={<ArrowBackIcon />} as={Link} href='/' aria-label='back home' />
+          <IconButton
+            variant='ghost'
+            icon={<ArrowBackIcon />}
+            as={Link}
+            href='/'
+            aria-label='back home'
+          />
           <Heading as='h1'>{data.collection.name}</Heading>
         </Flex>
       </CardHeader>
-      <CardBody style={{textAlign:'center'}}>
+      <CardBody style={{ textAlign: 'center' }}>
         <Image src={data.image_url} display='inline' />
         <Heading as='h2'>{data.name}</Heading>
         <Text>{data.description}</Text>
       </CardBody>
-      <CardFooter justifyContent='center'>
-        <Button as={Link} href={data.permalink} target='_blank'>permalink</Button>
+      <CardFooter justifyContent='center' position='sticky' bottom='0'>
+        <Button as={Link} href={data.permalink} target='_blank'>
+          permalink
+        </Button>
       </CardFooter>
     </Card>
   );
