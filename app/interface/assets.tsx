@@ -11,4 +11,8 @@ export interface Asset {
   asset_contract: {
     address: string;
   };
+  permalink: string;
+  collection: {
+    name: string;
+  };
 }
