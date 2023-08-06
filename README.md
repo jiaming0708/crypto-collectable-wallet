@@ -1,58 +1,50 @@
-# Welcome to Remix!
+# Crypto collectable wallet
 
-- [Remix Docs](https://remix.run/docs)
+## requirement
+There are two pages: list page and detail page. Use client side navigation to switch between different pages.
+### list page
+1. Use OpenSea API (Testnet) to get the collectables in this Ethereum account `0x85fD692D2a075908079261F5E351e7fE0267dB02`.
+2. Implement pagination. Get 20 items each time and fetch the next 20 when user reaches the end of the page (infinite scrolling)
 
-## Development
+#### API
+EndPoint: https://testnets-api.opensea.io/api/v1/assets GET Method
+Parameters:
+- owner={address}
+- offset=0...N
+- limit=20
 
-From your terminal:
+More Documentation: https://docs.opensea.io/v1.0/reference/getting-assets
 
-```sh
-npm run dev
-```
+### detail page
+#### API
+EndPoint: https://testnets-api.opensea.io/api/v1/asset/{asset_contract_address}/{token_id}/ GET Method
 
-This starts your app in development mode, rebuilding assets on file changes.
+More Documentation: https://docs.opensea.io/v1.0/reference/retrieving-a-single-asset-testnets
 
-## Deployment
+## tech stack
+- [Remix](https://remix.run/docs/en/1.19.2)
+- [Chakra-ui](https://chakra-ui.com/)
 
-First, build your app for production:
+## run this project
+make sure your environment
+- Node.js version 14 or greater
+- npm 7 or greater
 
-```sh
+run the `build`
+```shell
 npm run build
 ```
-
-Then run the app in production mode:
-
-```sh
-npm start
+That should output something like this:
+```
+ info  building... (NODE_ENV=production)
+ info  built (846ms)
 ```
 
-Now you'll need to pick a host to deploy it to.
-
-### DIY
-
-If you're familiar with deploying node applications, the built-in Remix app server is production-ready.
-
-Make sure to deploy the output of `remix build`
-
-- `build/`
-- `public/build/`
-
-### Using a Template
-
-When you ran `npx create-remix@latest` there were a few choices for hosting. You can run that again to create a new project, then copy over relevant code/assets from your current app to the new project that's pre-configured for your target server.
-
-Most importantly, this means everything in the `app/` directory, but if you've further customized your current application outside of there it may also include:
-
-- Any assets you've added/updated in `public/`
-- Any updated versions of root files such as `.eslintrc.js`, etc.
-
-```sh
-cd ..
-# create a new project, and pick a pre-configured host
-npx create-remix@latest
-cd my-new-remix-app
-# remove the new project's app (not the old one!)
-rm -rf app
-# copy your app over
-cp -R ../my-old-remix-app/app app
+run the built app now
+```shell
+npm start
+```
+This will start the server and output this:
+```
+Remix App Server started at http://localhost:3000
 ```
