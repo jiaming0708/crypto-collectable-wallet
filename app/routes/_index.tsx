@@ -72,7 +72,7 @@ export default function Index() {
         justifyItems='center'
       >
         {data.map((asset) => (
-          <ChakraLink key={asset.id} href={`/${asset.asset_contract.address}/${asset.token_id}`}>
+          <ChakraLink key={asset.id} href={`${asset.asset_contract.address}/${asset.token_id}`}>
             <Image src={asset.image_url} alt={asset.description} margin='0 auto 0.25rem' />
             <Heading textAlign='center'>{asset.name}</Heading>
           </ChakraLink>
