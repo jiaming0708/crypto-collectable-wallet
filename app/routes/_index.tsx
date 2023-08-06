@@ -35,7 +35,7 @@ export default function Index() {
       return;
     }
 
-    // API throw exception
+    // ignore API exception
     if (fetcher.data.detail) {
       return;
     }
@@ -50,8 +50,9 @@ export default function Index() {
   }, [fetcher.data]);
 
   const loadNext = () => {
+    // ignore fetch when data is end
     if (isEnd) return;
-    // trigger loader
+    // trigger loader to fetch data, not update browser url
     const query = `?index&offset=${data.length}`;
     fetcher.load(query);
   };

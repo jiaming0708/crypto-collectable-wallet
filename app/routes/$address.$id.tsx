@@ -10,6 +10,10 @@ import {
   Text,
   CardFooter,
   IconButton,
+  Alert,
+  AlertIcon,
+  AlertTitle,
+  AlertDescription,
 } from '@chakra-ui/react';
 import { ArrowBackIcon } from '@chakra-ui/icons';
 import type { LoaderArgs } from '@remix-run/node';
@@ -38,19 +42,29 @@ export default function Detail() {
             href='/'
             aria-label='back home'
           />
-          <Heading as='h1'>{data.collection.name}</Heading>
+          {data.detail ? (
+            <Alert status='error'>
+              <AlertIcon />
+              <AlertTitle>API request failure!</AlertTitle>
+              <AlertDescription>{data.detail}</AlertDescription>
+            </Alert>
+          ) : <Heading as='h1'>{data.collection.name}</Heading>}
         </Flex>
       </CardHeader>
-      <CardBody style={{ textAlign: 'center' }}>
-        <Image src={data.image_url} display='inline' />
-        <Heading as='h2'>{data.name}</Heading>
-        <Text>{data.description}</Text>
-      </CardBody>
-      <CardFooter justifyContent='center' position='sticky' bottom='0'>
-        <Button as={Link} href={data.permalink} target='_blank'>
-          permalink
-        </Button>
-      </CardFooter>
+      {!data.detail &&
+        <>
+          <CardBody style={{ textAlign: 'center' }}>
+            <Image src={data.image_url} display='inline' />
+            <Heading as='h2'>{data.name}</Heading>
+            <Text>{data.description}</Text>
+          </CardBody>
+          <CardFooter justifyContent='center' position='sticky' bottom='0'>
+            <Button as={Link} href={data.permalink} target='_blank'>
+              permalink
+            </Button>
+          </CardFooter>
+        </>
+      }
     </Card>
   );
 }

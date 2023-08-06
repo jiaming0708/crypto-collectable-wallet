@@ -4,6 +4,7 @@ export interface Assets {
 }
 
 export interface Asset {
+  detail: string;
   id: number;
   token_id: string;
   image_url: string;
