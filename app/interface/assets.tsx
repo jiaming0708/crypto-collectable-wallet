@@ -1,5 +1,6 @@
 export interface Assets {
   assets: Asset[];
+  detail: string;
 }
 
 export interface Asset {

@@ -15,7 +15,7 @@ import { ServerStyleContext, ClientStyleContext } from './context'
 
 export const meta: V2_MetaFunction = () => [
   { name: "charset", content: 'utf-8' },
-  { name: "viewport", content: '' },
+  { name: "viewport", content: 'width=device-width,initial-scale=1' },
   { title: "New Remix App" },
 ];
 
