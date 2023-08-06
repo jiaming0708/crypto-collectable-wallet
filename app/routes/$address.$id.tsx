@@ -39,7 +39,7 @@ export default function Detail() {
             variant='ghost'
             icon={<ArrowBackIcon />}
             as={Link}
-            href='/'
+            href='../'
             aria-label='back home'
           />
           {data.detail ? (
