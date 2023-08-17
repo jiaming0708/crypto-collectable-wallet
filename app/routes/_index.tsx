@@ -1,11 +1,21 @@
 import { json } from '@remix-run/node';
+import type { LoaderArgs} from '@remix-run/node';
 import { useLoaderData } from '@remix-run/react';
 import { Image, Heading, Link as ChakraLink, Grid } from '@chakra-ui/react';
 import type { Assets } from '../interface/assets';
 
-export async function loader() {
+export async function loader({ request }: LoaderArgs) {
+  const url = new URL(request.url);
+  const offset = url.searchParams.get("offset") || '0';
+  const limit = '20';
+  var params = new URLSearchParams({
+    owner: '0x85fD692D2a075908079261F5E351e7fE0267dB02',
+    limit: limit,
+    offset: offset,
+  });
+
   const res = await fetch(
-    `https://testnets-api.opensea.io/api/v1/assets?owner=0x85fD692D2a075908079261F5E351e7fE0267dB02`,
+    `https://testnets-api.opensea.io/api/v1/assets?${params}`,
   );
   return json<Assets>(await res.json());
 }
