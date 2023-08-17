@@ -27,10 +27,10 @@ export default function Index() {
     <Grid
       templateColumns={{
         base: 'repeat(1, 1fr)',
-        md: 'repeat(2, 1fr)',
+        lg: 'repeat(2, 1fr)',
       }}
       padding='1rem'
-      gap='0.5rem'
+      gap='1rem'
       justifyItems='center'
     >
       {assets.map((asset) => (
